@@ -25,7 +25,7 @@
 		<type="text" id="value">
 		<br>
 		<p>
-		<label>VValor a Cobrar:R$</label>
+		<label>Valor a Cobrar:R$</label>
 		<input class="w3-input w3-border w3-round-xxlarge" type="text" id="text">
 		<br>
 		<p>
@@ -41,8 +41,8 @@
         <input class="w3-input w3-border w3-round-xxlarge" type="text" id="text3">
 
 		<script type="text/javascript">
-			function update() {
-				var dict = {
+		
+		var dict = {
 					taxa_d: 0.9,
 					taxa_c: 1.7,
 					taxa_2: 3.87,
@@ -57,6 +57,9 @@
 					taxa_11: 8.94,
 					taxa_12: 9.45
 				};
+				
+			function update() {
+				
 				var select = document.getElementById('parcela');
 				var option = select.options[select.selectedIndex];	
             	var valor_da_venda = document.getElementById('valor_unitario').value.toString().replace(",", ".")
@@ -68,90 +71,102 @@
 				switch(document.getElementById('value').value = option.value){
 		
 					case 'Débito':
-						var taxa = dict.taxa_d/100; var fator = 1/(1-taxa);
-						document.getElementById('text').value = (fator*valor_da_venda).toFixed(2).toString().replace(".", ",");
+						var valor_a_cobrar =  valorCobrar(dict.taxa_d,valor_da_venda);
+						var cobrar = document.getElementById('text').value = valor_a_cobrar.toString().replace(".", ",");
 						document.getElementById('text1').value = " ";
 					break;
 					
 					case 'Crédito':
-						var taxa = dict.taxa_c/100; var fator = 1/(1-taxa);
-						document.getElementById('text').value = (fator*valor_da_venda).toFixed(2).toString().replace(".", ",");
-						document.getElementById('text1').value ='1 parcela de R$' + ''+ ((fator*valor_da_venda)/1).toFixed(2).toString().replace(".", ",");
+						var valor_a_cobrar =  valorCobrar(dict.taxa_c,valor_da_venda);
+						var cobrar = document.getElementById('text').value = valor_a_cobrar.toString().replace(".", ",");
+						document.getElementById('text1').value = nParcelas(valor_a_cobrar,1);	
 					break;
 					
 					case '2':
-						var taxa = dict.taxa_2/100; var fator = 1/(1-taxa);
-						document.getElementById('text').value = (fator*valor_da_venda).toFixed(2).toString().replace(".", ",");
-						document.getElementById('text1').value ='2 parcela de R$' + ''+ ((fator*valor_da_venda)/2).toFixed(2).toString().replace(".", ",");
+						var valor_a_cobrar =  valorCobrar(dict.taxa_2,valor_da_venda);
+						var cobrar = document.getElementById('text').value = valor_a_cobrar.toString().replace(".", ",");
+						document.getElementById('text1').value = nParcelas(valor_a_cobrar,2);	
 					break;
 					
 					case '3':
-						var taxa = dict.taxa_3/100; var fator = 1/(1-taxa);
-						document.getElementById('text').value = (fator*valor_da_venda).toFixed(2).toString().replace(".", ",");
-						document.getElementById('text1').value ='3 parcela de R$' + ''+ ((fator*valor_da_venda)/3).toFixed(2).toString().replace(".", ",");
+						var valor_a_cobrar =  valorCobrar(dict.taxa_3,valor_da_venda);
+						var cobrar = document.getElementById('text').value = valor_a_cobrar.toString().replace(".", ",");
+						document.getElementById('text1').value = nParcelas(valor_a_cobrar,3);	
 					break;
 					
 					case '4':
-						var taxa = dict.taxa_4/100; var fator = 1/(1-taxa);
-						document.getElementById('text').value = (fator*valor_da_venda).toFixed(2).toString().replace(".", ",");
-						document.getElementById('text1').value ='4 parcela de R$' + ''+ ((fator*valor_da_venda)/4).toFixed(2).toString().replace(".", ",");
+						var valor_a_cobrar =  valorCobrar(dict.taxa_4,valor_da_venda);
+						var cobrar = document.getElementById('text').value = valor_a_cobrar.toString().replace(".", ",");
+						document.getElementById('text1').value = nParcelas(valor_a_cobrar,4);	
 					break;
 					
 					case '5':
-						var taxa = dict.taxa_5/100; var fator = 1/(1-taxa);
-						document.getElementById('text').value = (fator*valor_da_venda).toFixed(2).toString().replace(".", ",");
-						document.getElementById('text1').value ='5 parcela de R$' + ''+ ((fator*valor_da_venda)/5).toFixed(2).toString().replace(".", ",");
+						var valor_a_cobrar =  valorCobrar(dict.taxa_5,valor_da_venda);
+						var cobrar = document.getElementById('text').value = valor_a_cobrar.toString().replace(".", ",");
+						document.getElementById('text1').value = nParcelas(valor_a_cobrar,5);	
 					break;
 					
 					case '6':
-						var taxa = dict.taxa_6/100; var fator = 1/(1-taxa);
-						document.getElementById('text').value = (fator*valor_da_venda).toFixed(2).toString().replace(".", ",");
-						document.getElementById('text1').value ='6 parcela de R$' + ''+ ((fator*valor_da_venda)/6).toFixed(2).toString().replace(".", ",");
+						var valor_a_cobrar =  valorCobrar(dict.taxa_6,valor_da_venda);
+						var cobrar = document.getElementById('text').value = valor_a_cobrar.toString().replace(".", ",");
+						document.getElementById('text1').value = nParcelas(valor_a_cobrar,6);	
 					break;
 											
 					case '7':
-						var taxa = dict.taxa_7/100; var fator = 1/(1-taxa);
-						document.getElementById('text').value = (fator*valor_da_venda).toFixed(2).toString().replace(".", ",");
-						document.getElementById('text1').value ='7 parcela de R$' + ''+ ((fator*valor_da_venda)/7).toFixed(2).toString().replace(".", ",");
+						var valor_a_cobrar =  valorCobrar(dict.taxa_7,valor_da_venda);
+						var cobrar = document.getElementById('text').value = valor_a_cobrar.toString().replace(".", ",");
+						document.getElementById('text1').value = nParcelas(valor_a_cobrar,7);	
 					break;
 					
 					case '8':
-						var taxa = dict.taxa_8/100; var fator = 1/(1-taxa);
-						document.getElementById('text').value = (fator*valor_da_venda).toFixed(2).toString().replace(".", ",");
-						document.getElementById('text1').value ='8 parcela de R$' + ''+ ((fator*valor_da_venda)/8).toFixed(2).toString().replace(".", ",");
+						var valor_a_cobrar =  valorCobrar(dict.taxa_8,valor_da_venda);
+						var cobrar = document.getElementById('text').value = valor_a_cobrar.toString().replace(".", ",");
+						document.getElementById('text1').value = nParcelas(valor_a_cobrar,8);	
 					break;
 					
 					case '9':
-						var taxa = dict.taxa_9/100; var fator = 1/(1-taxa);
-						document.getElementById('text').value = (fator*valor_da_venda).toFixed(2).toString().replace(".", ",");
-						document.getElementById('text1').value ='9 parcela de R$' + ''+ ((fator*valor_da_venda)/9).toFixed(2).toString().replace(".", ",");
+						var valor_a_cobrar =  valorCobrar(dict.taxa_9,valor_da_venda);
+						var cobrar = document.getElementById('text').value = valor_a_cobrar.toString().replace(".", ",");
+						document.getElementById('text1').value = nParcelas(valor_a_cobrar,9);	
 					break;
 					
 					case '10':
-						var taxa = dict.taxa_10/100; var fator = 1/(1-taxa);
-						document.getElementById('text').value = (fator*valor_da_venda).toFixed(2).toString().replace(".", ",");
-						document.getElementById('text1').value ='10 parcela de R$' + ''+ ((fator*valor_da_venda)/10).toFixed(2).toString().replace(".", ",");
+						var valor_a_cobrar =  valorCobrar(dict.taxa_10,valor_da_venda);
+						var cobrar = document.getElementById('text').value = valor_a_cobrar.toString().replace(".", ",");
+						document.getElementById('text1').value = nParcelas(valor_a_cobrar,10);	
 					break;
 					
 					
 					case '11':
-						var taxa = dict.taxa_11/100; var fator = 1/(1-taxa);
-						document.getElementById('text').value = (fator*valor_da_venda).toFixed(2).toString().replace(".", ",");
-						document.getElementById('text1').value ='11 parcela de R$' + ''+ ((fator*valor_da_venda)/11).toFixed(2).toString().replace(".", ",");
+						var valor_a_cobrar =  valorCobrar(dict.taxa_11,valor_da_venda);
+						var cobrar = document.getElementById('text').value = valor_a_cobrar.toString().replace(".", ",");
+						document.getElementById('text1').value = nParcelas(valor_a_cobrar,11);	
 					break;
 					
 					case '12':
-						var taxa = dict.taxa_12/100; var fator = 1/(1-taxa);
-						document.getElementById('text').value = (fator*valor_da_venda).toFixed(2).toString().replace(".", ",");
-						document.getElementById('text1').value ='12 parcela de R$' + ''+ ((fator*valor_da_venda)/12).toFixed(2).toString().replace(".", ",");
+						var valor_a_cobrar =  valorCobrar(dict.taxa_12,valor_da_venda);
+						var cobrar = document.getElementById('text').value = valor_a_cobrar.toString().replace(".", ",");
+						document.getElementById('text1').value = nParcelas(valor_a_cobrar,12);	
 					break;
 										  
 					default:
 						console.log('CONDIÇÂO INVÁLIDA.');
 					break;
 				}
+
+				function valorCobrar(taxa,valor_da_venda){
+					var taxa = taxa/100;
+					var fator = 1/(1-taxa);
+					var valor_da_venda;
+						return (fator*valor_da_venda).toFixed(2);
+				} 
+
+				function nParcelas(valor_a_cobrar,op){
+					return op + ' parcelas de R$ ' + (valor_a_cobrar/op).toFixed(2).toString().replace(".", ",");			
+
+				}	
 			}
-			update();
+			update();		
 		</script>
 	</body>
 </html>
